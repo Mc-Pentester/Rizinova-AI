@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RiziNova AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+    
+
+    <style>
+        body {
+            background: linear-gradient(180deg, #f4f6f8 0%, #eef2f3 100%);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(25, 135, 84, 0.85) !important; /* transparence */
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .navbar-brand img { height:36px; }
+
+        /* Sidebar */
+        .sidebar {
+            background: rgba(255,255,255,0.95);
+            border-radius:18px;
+            padding:16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Tip cards */
+        .tip-card {
+            border:1px solid #e0e0e0;
+            border-radius:14px;
+            overflow:hidden;
+            margin-bottom:15px;
+            background:#ffffff;
+        }
+        .tip-card-header {
+            background: linear-gradient(90deg, #198754, #2fa36b);
+            color:#fff;
+            padding:10px 12px;
+            font-weight:600;
+            display:flex;
+            align-items:center;
+            gap:8px;
+            font-size:0.95rem;
+        }
+        .tip-card-body {
+            padding:12px;
+            font-size:0.9rem;
+        }
+        .tip-card-body ul {
+            padding-left:18px;
+            margin:0;
+        }
+
+        /* Chat */
+        .chat-box {
+            background:#ffffff;
+            border-radius:20px;
+            height:75vh;
+            display:flex;
+            flex-direction:column;
+            overflow:hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+        .chat-messages {
+            flex:1;
+            padding:18px;
+            overflow-y:auto;
+        }
+        .chat-input {
+            border-top:1px solid #ddd;
+            padding:12px;
+            background:#fafafa;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar { margin-top:15px; }
+            .chat-box { height:70vh; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="/static/logo.png" alt="RiziNova AI">
+            
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="nav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/chat">Chat</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Docs</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <main class="col-lg-9">
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Sidebar dynamique -->
+        <aside class="col-lg-3 sidebar">
+        <div class="sidebar-card rizinova-sidebar-card p-3 mb-4">
+        <div class="sidebar-title bg-success text-white px-3 py-2 rounded-top">
+        
+        <h6>🌱 Conseils rapides</h6>
+    </div>
+
+    {% for tip in quick_tips %}
+        <div class="rizinova-tip-card mb-2">
+            <div class="rizinova-tip-category">
+                {{ tip.theme|title }}
+            </div>
+            <div class="rizinova-tip-title">
+                {{ tip.content }}
+            </div>
+        </div>
+    {% empty %}
+        <small class="text-muted">Aucun conseil disponible</small>
+    {% endfor %}
+
+    <div class="sidebar-title bg-success text-white px-3 py-2 rounded-top">
+        <i class="bi bi-lightning-charge-fill me-2"></i>
+        Actions rapides
+    </div>
+
+    
+    <div class="p-3 bg-white rounded-bottom shadow-sm">
+
+        <div class="row g-2">
+
+            <div class="col-12">
+                <a href="/chat" class="action-card">
+                    <i class="bi bi-chat-dots"></i>
+                    <span>Poser une question</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#pratiques" class="action-card">
+                    <i class="bi bi-leaf"></i>
+                    <span>Bonnes pratiques</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#diagnostic" class="action-card">
+                    <i class="bi bi-bug"></i>
+                    <span>Identifier un problème</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#rendement" class="action-card">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Estimer rendement</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#knowledge" class="action-card">
+                    <i class="bi bi-book"></i>
+                    <span>Explorer la base</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+            {% block sidebar_extra %}
+            
+            {% endblock %}
+        </aside>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

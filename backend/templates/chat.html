@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+<style>
+.message-inner {
+    display: flex;
+    align-items: flex-start; /* Avatar aligné avec le haut du texte */
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.content {
+    background-color: #f0f0f0;
+    padding: 6px 10px;
+    border-radius: 12px;
+    line-height: 1.4;
+    word-break: break-word;
+    max-width: 80%;
+}
+.message.user .content {
+    background-color: #d1e7dd; /* Couleur pour messages utilisateurs */
+}
+</style>
+
+<div class="chat-box">
+    <div class="chat-messages" id="chatMessages">
+        <div class="message bot mb-2">
+            <div class="message-inner">
+                <img src="{% static 'illustrations/rizinova-avatar.png' %}" alt="RiziNova" class="avatar">
+                <div class="content">Bonjour 👋 Comment puis-je vous aider aujourd’hui ?</div>
+            </div>
+        </div>
+    </div>
+    <div class="chat-input">
+        <form id="chatForm" class="d-flex gap-2">
+            <input type="text" id="message" class="form-control" placeholder="Posez votre question sur le riz…">
+            <button class="btn btn-success" type="submit"><i class="bi bi-send"></i></button>
+        </form>
+    </div>
+</div>
+
+<script>
+const form = document.getElementById('chatForm');
+const messages = document.getElementById('chatMessages');
+const input = document.getElementById('message');
+
+let conversationId = null;
+
+// Écrit le texte de manière progressive de façon sécurisée (évite les bugs d'affichage HTML)
+async function typeText(element, text, speed = 15) {
+    element.textContent = ''; // Sécurité contre l'interprétation HTML brute pendant l'animation
+    for (let i = 0; i < text.length; i++) {
+        element.textContent += text[i];
+        await new Promise(resolve => setTimeout(resolve, speed));
+        messages.scrollTop = messages.scrollHeight;
+    }
+}
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    // Message utilisateur
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user mb-2';
+    userMsg.innerHTML = `
+        <div class="message-inner">
+            <div class="content"><strong>Vous :</strong> ${question}</div>
+        </div>
+    `;
+    messages.appendChild(userMsg);
+    messages.scrollTop = messages.scrollHeight;
+
+    // Placeholder bot
+    const botMsg = document.createElement('div');
+    botMsg.className = 'message bot mb-2';
+    botMsg.innerHTML = `
+        <div class="message-inner">
+            <img src="{% static 'illustrations/rizinova-avatar.png' %}" alt="RiziNova" class="avatar">
+            <div class="content">Réponse en cours…</div>
+        </div>
+    `;
+    messages.appendChild(botMsg);
+    messages.scrollTop = messages.scrollHeight;
+    input.value = '';
+
+    try {
+        const payload = { question };
+        if (conversationId) payload.conversation_id = conversationId;
+
+        const response = await fetch("/api/chat/", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const data = await response.json();
+
+        const botContent = botMsg.querySelector('.content');
+        
+        // 1. Animation d'écriture propre du texte de réponse
+        await typeText(botContent, data.answer);
+
+        // 2. Ajout des sources proprement après l'effet d'écriture
+        if (data.sources && data.sources.length > 0) {
+            const sourcesContainer = document.createElement('div');
+            sourcesContainer.className = 'mt-2 pt-2 border-top';
+            sourcesContainer.innerHTML = `<small class="text-muted" style="display: block; font-style: italic;">Sources : ${data.sources.join(", ")}</small>`;
+            botContent.appendChild(sourcesContainer);
+        }
+
+        if (data.conversation_id) conversationId = data.conversation_id;
+
+    } catch (err) {
+        const botContent = botMsg.querySelector('.content');
+        botContent.innerHTML = "⚠️ Une erreur de connexion au serveur est survenue.";
+        console.error(err);
+    }
+
+    messages.scrollTop = messages.scrollHeight;
+});
+</script>
+
+{% endblock %}

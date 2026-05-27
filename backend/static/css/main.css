@@ -1,0 +1,174 @@
+/* ================= SIDEBAR STYLING ================= */
+.sidebar {
+    width: 320px;
+    max-width: 95%;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Sidebar Box */
+.sidebar-box {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Quick Tip & Action Cards */
+.quick-tip-card, .quick-action-card {
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.quick-tip-card:hover, .quick-action-card:hover {
+    background: #e9f7ef;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.bot .sender {
+    font-weight: bold;
+    color: #007bff; /* bleu pour RiziNova */
+}
+
+/* Weather Card */
+.weather-card {
+    background: #f0f8ff;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+.weather-card:hover {
+    background: #e6f2ff;
+    transform: translateY(-3px);
+}
+
+/* Season Cards */
+.season-card {
+    background: #fff7e6;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.season-card:hover {
+    background: #ffeabf;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Home only display control */
+.home-only {
+    display: none;
+}
+.home-page .home-only {
+    display: block;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Sidebar box */
+.sidebar-box {
+    border-radius: 14px;
+    overflow: hidden;
+}
+/* Action cards */
+.action-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #f8fdf9;
+    text-decoration: none;
+    color: #1f3d2b;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.action-card i {
+    font-size: 1.3rem;
+    color: #198754;
+}
+
+/* Hover effects */
+.action-card:hover {
+    background: #e9f7ef;
+    transform: translateX(6px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.action-card:active {
+    transform: scale(0.97);
+}
+
+/* === SIDEBAR CARD === */
+.rizinova-sidebar-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    border: 1px solid rgba(30, 127, 79, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+/* === TITLE === */
+.rizinova-sidebar-title {
+    color: #1e7f4f;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+}
+
+/* === TIP CARD === */
+.rizinova-tip-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.rizinova-tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(30, 127, 79, 0.15);
+}
+
+/* === CATEGORY HEADER === */
+.rizinova-tip-category {
+    background: linear-gradient(135deg, #1e7f4f, #2fa36b);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+/* === TITLE TEXT === */
+.rizinova-tip-title {
+    font-size: 0.78rem;
+    color: #2d3a2e;
+    line-height: 1.4;
+}
+
+.message {
+    display: flex;           /* Flex pour aligner horizontalement avatar + texte */
+    align-items: flex-start; /* Aligne le texte en haut de l’avatar */
+    margin-bottom: 10px;
+}
+
+.bot .avatar {
+    width: 32px;             /* Largeur de l’avatar */
+    height: 32px;            /* Hauteur de l’avatar */
+    border-radius: 50%;      /* Cercle */
+    margin-right: 8px;       /* Espace entre avatar et texte */
+    flex-shrink: 0;          /* Empêche l’avatar de rétrécir si la ligne est petite */
+}
+
+.message .content {
+    display: block;
+    word-break: break-word;  /* Texte qui passe à la ligne si trop long */
+    line-height: 1.4;        /* Ajuste la hauteur des lignes du texte */
+}
+

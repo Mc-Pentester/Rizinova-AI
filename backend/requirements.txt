@@ -1,0 +1,13 @@
+Django>=4.2
+djangorestframework>=3.14
+psycopg2-binary>=2.9
+openai>=0.27.0
+python-dotenv>=1.0.0
+pgvector
+pinecone 
+django-extensions
+sentence_transformers
+faiss-cpu
+PyMuPDF
+rank-bm25
+weasyprint

@@ -1,0 +1,64 @@
+/* ================= SIDEBAR STYLING ================= */
+.sidebar {
+    width: 280px;
+    max-width: 95%;
+    font-family: "Poppins", sans-serif;
+}
+
+/* Sidebar Box */
+.sidebar-box {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Quick Tip & Action Cards */
+.quick-tip-card, .quick-action-card {
+    background: #f8f9fa;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.quick-tip-card:hover, .quick-action-card:hover {
+    background: #e9f7ef;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Weather Card */
+.weather-card {
+    background: #f0f8ff;
+    padding: 12px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+}
+.weather-card:hover {
+    background: #e6f2ff;
+    transform: translateY(-3px);
+}
+
+/* Season Cards */
+.season-card {
+    background: #fff7e6;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.season-card:hover {
+    background: #ffeabf;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Home only display control */
+.home-only {
+    display: none;
+}
+.home-page .home-only {
+    display: block;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}

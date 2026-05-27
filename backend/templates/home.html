@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero-section p-4 p-lg-5 rounded-4 mb-4 position-relative text-white" >
+    
+    <!-- Overlay semi-transparent pour lisibilité du texte -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" 
+         style="background: rgba(0, 100, 0, 0.4); border-radius: 1rem;"></div>
+
+    <div class="row align-items-center position-relative" style="z-index:1;">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h1 class="fw-bold text-light">RiziNova AI 🌾</h1>
+            <p class="fs-5 mt-3">
+                Votre assistant intelligent pour améliorer la production du riz,
+                réduire les pertes et prendre de meilleures décisions agricoles.
+            </p>
+            <div class="d-flex gap-3 mt-4 flex-wrap">
+                <a href="/chat" class="btn btn-success btn-lg">Commencer maintenant</a>
+                <a href="#features" class="btn btn-outline-light btn-lg">Découvrir</a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <img src="{% static 'illustrations/rice-harvest.png' %}" class="img-fluid" 
+                 style="max-height:320px;" alt="RiziNova AI">
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+<section id="features" class="mb-5">
+    <h3 class="fw-bold mb-4">Ce que RiziNova AI peut faire pour vous</h3>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <i class="bi bi-chat-dots fs-1 text-success"></i>
+                    <h5 class="mt-3">Conseils intelligents</h5>
+                    <p class="text-muted">Des recommandations basées sur vos questions et le contexte agricole local.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <i class="bi bi-graph-up-arrow fs-1 text-success"></i>
+                    <h5 class="mt-3">Amélioration des rendements</h5>
+                    <p class="text-muted">Optimisez la production grâce à de bonnes pratiques validées.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <i class="bi bi-shield-check fs-1 text-success"></i>
+                    <h5 class="mt-3">Réduction des risques</h5>
+                    <p class="text-muted">Anticipez maladies, ravageurs et erreurs culturales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="mb-5">
+    <h3 class="fw-bold mb-4">Comment ça marche</h3>
+    <div class="row text-center g-4">
+        <div class="col-md-4">
+            <i class="bi bi-question-circle fs-1 text-success"></i>
+            <h6 class="mt-3">1. Posez une question</h6>
+            <p class="text-muted">Sur la culture du riz, les maladies ou la fertilisation.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="bi bi-cpu fs-1 text-success"></i>
+            <h6 class="mt-3">2. Analyse intelligente</h6>
+            <p class="text-muted">L’IA analyse des documents agricoles fiables.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="bi bi-check-circle fs-1 text-success"></i>
+            <h6 class="mt-3">3. Réponse claire</h6>
+            <p class="text-muted">Vous recevez un conseil pratique et applicable.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section class="mb-5">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <h3 class="fw-bold mb-3">Pourquoi utiliser RiziNova AI ?</h3>
+            <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Gain de temps dans la prise de décision</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Conseils adaptés au contexte local</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Accessible sur mobile et ordinateur</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-success"></i> Simple, rapide et fiable</li>
+            </ul>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="/static/illustrations/reflexions.jpg" class="img-fluid" style="max-height:260px;" alt="Agriculteur">
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="text-center p-4 rounded-4" style="background:#e9f7ef;">
+    <h4 class="fw-bold mb-3">Prêt à transformer votre production de riz ?</h4>
+    <a href="/chat" class="btn btn-success btn-lg">Lancer RiziNova AI</a>
+</section>
+
+<!-- 
+ {% block sidebar_extra %}
+    
+<div class="sidebar-box mt-4 home-only animate__animated animate__fadeInUp">
+
+    
+    <div class="sidebar-title bg-success text-white px-3 py-2 rounded-top">
+        <i class="bi bi-lightning-charge-fill me-2"></i>
+        Actions rapides
+    </div>
+
+    
+    <div class="p-3 bg-white rounded-bottom shadow-sm">
+
+        <div class="row g-2">
+
+            <div class="col-12">
+                <a href="/chat" class="action-card">
+                    <i class="bi bi-chat-dots"></i>
+                    <span>Poser une question</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#pratiques" class="action-card">
+                    <i class="bi bi-leaf"></i>
+                    <span>Bonnes pratiques</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#diagnostic" class="action-card">
+                    <i class="bi bi-bug"></i>
+                    <span>Identifier un problème</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#rendement" class="action-card">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Estimer rendement</span>
+                </a>
+            </div>
+
+            <div class="col-12">
+                <a href="#knowledge" class="action-card">
+                    <i class="bi bi-book"></i>
+                    <span>Explorer la base</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="mb-4">
+        <h6 class="text-white bg-primary p-2 rounded-top">Historique des Questions</h6>
+        {% for categorie, questions in historique_questions %}
+        <h3>{{ categorie }}</h3>
+        <ul>
+            {% for q in questions %}
+            <li>{{ q }}</li>
+            {% endfor %}
+        </ul>
+        {% empty %}
+        <small class="text-muted">Aucune question enregistrée.</small>
+    {% endfor %}
+
+    </div>
+    
+    <div class="mb-4">
+    <h6 class="text-white bg-info p-2 rounded-top">
+        🌤️ Météo actuelle
+    </h6>
+
+    {% if meteo %}
+        <div class="p-3 bg-white rounded-bottom">
+            <strong>{{ meteo.ville }}, {{ meteo.pays }}</strong><br>
+            🌡️ {{ meteo.temp }}°C – {{ meteo.condition }}<br>
+            💧 Humidité : {{ meteo.humidite }}%<br>
+            💨 Vent : {{ meteo.vent }} km/h
+        </div>
+    {% else %}
+        <div class="p-3 text-muted bg-white rounded-bottom">
+            Météo indisponible pour le moment
+        </div>
+    {% endif %}
+</div>
+
+
+   
+    <div class="mb-4">
+        <h6 class="text-white bg-warning p-2 rounded-top">Alertes Agricoles</h6>
+        <ul class="list-group list-group-flush">
+            {% for alerte in alertes_agricoles %}
+            <li class="list-group-item text-danger">{{ alerte.message }}</li>
+            {% empty %}
+            <li class="list-group-item text-muted">Aucune alerte pour le moment</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}
+-->
+
+{% endblock %}

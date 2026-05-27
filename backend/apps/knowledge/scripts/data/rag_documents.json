@@ -1,0 +1,28 @@
+[
+    {
+        "title": "Stockage du riz — Approche technique #1",
+        "topic": "Stockage",
+        "objective": "Limiter les pertes post-récolte et protéger le grain",
+        "techniques": [
+            "Stocker le riz à l’abri de l’humidité et de la pluie",
+            "Assurer une bonne ventilation dans les silos",
+            "Contrôler régulièrement l’état du grain"
+        ],
+        "tips": "Vérifier l’état du grain toutes les semaines pour éviter la formation de moisissures ou de parasites",
+        "environment": "Zone pluviale, climat tropical",
+        "source": "Guide pratique riziculture #1"
+    },
+    {
+        "title": "Techniques de semis et repiquage — Approche technique #2",
+        "topic": "Semis / Repiquage",
+        "objective": "Assurer une germination uniforme et un bon rendement",
+        "techniques": [
+            "Préparer les parcelles avant le semis",
+            "Semer en lignes espacées pour faciliter le repiquage",
+            "Utiliser des plants sains et robustes"
+        ],
+        "tips": "Irriguer légèrement après le repiquage pour favoriser l’enracinement",
+        "environment": "Zone irriguée, saison humide",
+        "source": "Guide pratique riziculture #2"
+    }
+]

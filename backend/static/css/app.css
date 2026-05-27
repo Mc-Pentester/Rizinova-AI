@@ -1,0 +1,48 @@
+/* === SIDEBAR CARD === */
+.rizinova-sidebar-card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    border: 1px solid rgba(30, 127, 79, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+/* === TITLE === */
+.rizinova-sidebar-title {
+    color: #1e7f4f;
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+}
+
+/* === TIP CARD === */
+.rizinova-tip-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.25s ease;
+    cursor: pointer;
+}
+
+.rizinova-tip-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(30, 127, 79, 0.15);
+}
+
+/* === CATEGORY HEADER === */
+.rizinova-tip-category {
+    background: linear-gradient(135deg, #1e7f4f, #2fa36b);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+/* === TITLE TEXT === */
+.rizinova-tip-title {
+    font-size: 0.78rem;
+    color: #2d3a2e;
+    line-height: 1.4;
+}
