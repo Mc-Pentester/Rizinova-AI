@@ -24,10 +24,15 @@ load_dotenv(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-*ag1e_7f+g=mj08elw70_z#iq4@w5ptj5hgtvlum=pk%3spx7d')
+SECRET_KEY = os.environ.get('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError(
+        'SECRET_KEY environment variable must be set. '
+        'Generate one with: python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"'
+    )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
@@ -80,21 +85,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                 "apps.knowledge.context_processors.sidebar_history",
-                 "apps.knowledge.context_processors.quick_tips",
-
+                "apps.knowledge.context_processors.sidebar_history",
+                "apps.knowledge.context_processors.quick_tips",
             ],
         },
     },
 ]
-
-TEMPLATES[0]["OPTIONS"]["context_processors"] += [
-    "apps.knowledge.context_processors.sidebar_history",
-    "apps.knowledge.context_processors.quick_tips",
-
-]
-
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
@@ -131,6 +127,15 @@ AUTH_PASSWORD_VALIDATORS = [
 SESSION_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SAMESITE = "Lax"
 
+# Security settings for production
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_SECURITY_POLICY = {
+        "default-src": ("'self'",),
+    }
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
@@ -153,4 +158,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
+# OpenAI API Key
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
+if USE_OPENAI and not OPENAI_API_KEY:
+    raise ValueError(
+        'OPENAI_API_KEY must be set when OPENAI_ENABLED is True'
+    )
